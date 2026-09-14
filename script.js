@@ -49,18 +49,6 @@ const soundToggle = document.getElementById('soundToggle');
 const undoBtn = document.getElementById('undoBtn');
 const clearBtn = document.getElementById('clearBtn');
 
-// License DOM
-const licenseModal = document.getElementById('licenseModal');
-const btnPersonal = document.getElementById('btnPersonal');
-const btnCommercial = document.getElementById('btnCommercial');
-const commercialForm = document.getElementById('commercialForm');
-const btnBackToOptions = document.getElementById('btnBackToOptions');
-const btnVerifyLicense = document.getElementById('btnVerifyLicense');
-const licenseKeyInput = document.getElementById('licenseKey');
-const licenseError = document.getElementById('licenseError');
-const licenseBadge = document.getElementById('licenseBadge');
-const cafecitoLink = document.getElementById('cafecitoLink');
-
 // Tabs DOM
 const tabBtns = document.querySelectorAll('.tab-btn');
 const tabContents = document.querySelectorAll('.tab-content');
@@ -363,67 +351,3 @@ if (clearBtn) {
 
 populateGuide();
 updateDisplay();
-
-/* --- License System --- */
-function checkLicense() {
-    const licenseType = localStorage.getItem('morseLicenseType');
-    
-    if (licenseType === 'commercial') {
-        licenseModal.style.display = 'none';
-        licenseBadge.textContent = 'Uso Comercial';
-        licenseBadge.className = 'license-badge commercial';
-    } else if (licenseType === 'personal') {
-        licenseModal.style.display = 'none';
-        licenseBadge.textContent = 'Uso Personal';
-        licenseBadge.className = 'license-badge';
-    } else {
-        licenseModal.style.display = 'flex';
-    }
-}
-
-btnPersonal.addEventListener('click', () => {
-    localStorage.setItem('morseLicenseType', 'personal');
-    checkLicense();
-});
-
-btnCommercial.addEventListener('click', () => {
-    document.querySelector('.license-options').style.display = 'none';
-    commercialForm.style.display = 'block';
-});
-
-btnBackToOptions.addEventListener('click', () => {
-    commercialForm.style.display = 'none';
-    document.querySelector('.license-options').style.display = 'flex';
-    licenseError.textContent = '';
-});
-
-btnVerifyLicense.addEventListener('click', () => {
-    const key = licenseKeyInput.value.trim().toUpperCase();
-    // Valid format: MORSE-XXXXX-XXXXX
-    const isValid = /^MORSE-[A-Z0-9]{5}-[A-Z0-9]{5}$/.test(key);
-    
-    if (isValid) {
-        localStorage.setItem('morseLicenseType', 'commercial');
-        localStorage.setItem('morseLicenseKey', key);
-        checkLicense();
-    } else {
-        licenseError.style.color = 'var(--error)';
-        licenseError.textContent = 'Clave de licencia inválida. El formato debe ser MORSE-XXXXX-XXXXX.';
-    }
-});
-
-if (cafecitoLink) {
-    cafecitoLink.addEventListener('click', () => {
-        // Generar clave automáticamente por apoyar
-        const randomStr1 = Math.random().toString(36).substring(2, 7).toUpperCase();
-        const randomStr2 = Math.random().toString(36).substring(2, 7).toUpperCase();
-        const autoKey = `MORSE-${randomStr1}-${randomStr2}`;
-        
-        licenseKeyInput.value = autoKey;
-        licenseError.style.color = 'var(--success)';
-        licenseError.textContent = '¡Gracias por tu apoyo! Clave generada. Pulsa en "Verificar".';
-    });
-}
-
-// Run license check on startup
-checkLicense();

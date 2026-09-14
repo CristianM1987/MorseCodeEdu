@@ -18,6 +18,7 @@
   "license": "ISC",
   "devDependencies": {
     "@capacitor/android": "^8.5.2",
+    "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "^8.5.2",
     "cpy-cli": "^7.0.0",
     "electron": "^44.3.0",
