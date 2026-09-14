@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traductor de Código Morse</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Código Morse</h1>
+            <p>Aprende, practica y traduce.</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-target="translator">Traductor</button>
+            <button class="tab-btn" data-target="guide">Abecedario</button>
+            <button class="tab-btn" data-target="exercises">Ejercicios</button>
+        </div>
+
+        <main>
+            <!-- Translator Section -->
+            <div id="translator" class="tab-content active">
+                <div class="display-panel glass">
+                    <div class="label">Secuencia Actual</div>
+                    <div id="currentSequence" class="current-sequence"></div>
+                </div>
+
+                <div class="display-panel glass">
+                    <div class="label">Mensaje Traducido</div>
+                    <div id="translatedText" class="translated-text">_</div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="undoBtn" class="action-btn">Deshacer</button>
+                    <button id="clearBtn" class="action-btn clear-btn">Borrar Todo</button>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card glass">
+                        <div class="stat-label">Duración Pulsación</div>
+                        <div id="pressDuration" class="stat-value">0 ms</div>
+                    </div>
+                    <div class="stat-card glass">
+                        <div class="stat-label">Tiempo Entre Pulsaciones</div>
+                        <div id="pauseDuration" class="stat-value">0 ms</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guide Section -->
+            <div id="guide" class="tab-content">
+                <div class="guide-panel glass">
+                    <h3>Guía de Tiempos</h3>
+                    <ul class="timing-guide">
+                        <li><span class="dot"></span> Punto: Corto (&lt; 250ms)</li>
+                        <li><span class="dash"></span> Raya: Largo (&gt; 250ms)</li>
+                        <li>Pausa entre letras: &gt; 600ms</li>
+                        <li>Pausa entre palabras: &gt; 1400ms</li>
+                    </ul>
+                    
+                    <h3>Alfabeto y Números</h3>
+                    <div class="alphabet-grid" id="alphabetGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercises Section -->
+            <div id="exercises" class="tab-content">
+                <div class="exercise-panel glass">
+                    <div class="exercise-header">
+                        <h3>Modo Práctica</h3>
+                        <div class="score">Puntuación: <span id="scoreValue">0</span></div>
+                    </div>
+                    
+                    <div class="target-character">
+                        <div class="label">Digita esta letra/número:</div>
+                        <div id="targetChar" class="huge-char">A</div>
+                        <div id="targetMorse" class="hint-morse">.-</div>
+                    </div>
+
+                    <div class="display-panel glass feedback-panel">
+                        <div class="label">Tu Intento</div>
+                        <div id="exerciseSequence" class="current-sequence"></div>
+                        <div id="exerciseFeedback" class="feedback-text">Esperando...</div>
+                    </div>
+                    
+                    <button id="nextExerciseBtn" class="secondary-btn">Siguiente Ejercicio</button>
+                </div>
+            </div>
+
+            <!-- Universal Input Button -->
+            <div class="input-area">
+                <button id="morseButton" class="morse-button">
+                    <span class="button-text">MANTÉN PRESIONADO</span>
+                    <div class="ripple"></div>
+                </button>
+                <div class="sound-toggle">
+                    <label>
+                        <input type="checkbox" id="soundToggle" checked>
+                        Activar Sonido
+                    </label>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

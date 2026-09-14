@@ -1,0 +1,23 @@
+{
+  "name": "traductor-morse",
+  "version": "1.0.0",
+  "description": "Traductor de codigo morse y ejercicios",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder -w"
+  },
+  "build": {
+    "appId": "com.crist.morse",
+    "productName": "Traductor Morse",
+    "win": {
+      "target": "portable"
+    }
+  },
+  "author": "Crist",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^44.3.0",
+    "electron-builder": "^26.15.3"
+  }
+}
