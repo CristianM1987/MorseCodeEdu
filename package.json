@@ -17,7 +17,13 @@
   "author": "Crist",
   "license": "ISC",
   "devDependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/cli": "^8.5.2",
+    "cpy-cli": "^7.0.0",
     "electron": "^44.3.0",
     "electron-builder": "^26.15.3"
+  },
+  "dependencies": {
+    "@capacitor/core": "^8.5.2"
   }
 }

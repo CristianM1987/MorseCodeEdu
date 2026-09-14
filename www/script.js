@@ -59,7 +59,6 @@ const btnVerifyLicense = document.getElementById('btnVerifyLicense');
 const licenseKeyInput = document.getElementById('licenseKey');
 const licenseError = document.getElementById('licenseError');
 const licenseBadge = document.getElementById('licenseBadge');
-const cafecitoLink = document.getElementById('cafecitoLink');
 
 // Tabs DOM
 const tabBtns = document.querySelectorAll('.tab-btn');
@@ -407,23 +406,9 @@ btnVerifyLicense.addEventListener('click', () => {
         localStorage.setItem('morseLicenseKey', key);
         checkLicense();
     } else {
-        licenseError.style.color = 'var(--error)';
         licenseError.textContent = 'Clave de licencia inválida. El formato debe ser MORSE-XXXXX-XXXXX.';
     }
 });
-
-if (cafecitoLink) {
-    cafecitoLink.addEventListener('click', () => {
-        // Generar clave automáticamente por apoyar
-        const randomStr1 = Math.random().toString(36).substring(2, 7).toUpperCase();
-        const randomStr2 = Math.random().toString(36).substring(2, 7).toUpperCase();
-        const autoKey = `MORSE-${randomStr1}-${randomStr2}`;
-        
-        licenseKeyInput.value = autoKey;
-        licenseError.style.color = 'var(--success)';
-        licenseError.textContent = '¡Gracias por tu apoyo! Clave generada. Pulsa en "Verificar".';
-    });
-}
 
 // Run license check on startup
 checkLicense();
