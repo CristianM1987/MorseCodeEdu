@@ -22,6 +22,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Update Web Assets
+        run: |
+          mkdir -p www
+          cp index.html script.js style.css www/
+
       - name: Sync Capacitor
         run: npx cap sync android
 
