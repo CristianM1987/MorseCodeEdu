@@ -1,3 +1,76 @@
+const TRANSLATIONS = {
+    es: {
+        title: "Código Morse",
+        subtitle: "Aprende, practica y traduce.",
+        tabTranslator: "Traductor",
+        tabGuide: "Abecedario",
+        tabExercises: "Ejercicios",
+        currentSeq: "Secuencia Actual",
+        translatedText: "Mensaje Traducido",
+        undo: "Deshacer",
+        clear: "Borrar Todo",
+        pressDur: "Duración Pulsación",
+        pauseDur: "Tiempo Entre Pulsaciones",
+        guideTitle: "Guía de Tiempos",
+        guideDot: "Punto: Corto (< 250ms)",
+        guideDash: "Raya: Largo (> 250ms)",
+        guideLetterPause: "Pausa entre letras: > 600ms",
+        guideWordPause: "Pausa entre palabras: > 1400ms",
+        guideAlphabet: "Alfabeto y Números",
+        practiceMode: "Modo Práctica",
+        score: "Puntuación:",
+        typeThis: "Digita esta letra/número:",
+        yourAttempt: "Tu Intento",
+        waiting: "Esperando...",
+        nextEx: "Siguiente Ejercicio",
+        holdBtn: "MANTÉN PRESIONADO",
+        soundToggle: "Activar Sonido"
+    },
+    en: {
+        title: "Morse Code",
+        subtitle: "Learn, practice and translate.",
+        tabTranslator: "Translator",
+        tabGuide: "Alphabet",
+        tabExercises: "Exercises",
+        currentSeq: "Current Sequence",
+        translatedText: "Translated Message",
+        undo: "Undo",
+        clear: "Clear All",
+        pressDur: "Press Duration",
+        pauseDur: "Time Between Presses",
+        guideTitle: "Timing Guide",
+        guideDot: "Dot: Short (< 250ms)",
+        guideDash: "Dash: Long (> 250ms)",
+        guideLetterPause: "Pause between letters: > 600ms",
+        guideWordPause: "Pause between words: > 1400ms",
+        guideAlphabet: "Alphabet & Numbers",
+        practiceMode: "Practice Mode",
+        score: "Score:",
+        typeThis: "Type this letter/number:",
+        yourAttempt: "Your Attempt",
+        waiting: "Waiting...",
+        nextEx: "Next Exercise",
+        holdBtn: "HOLD TO TYPE",
+        soundToggle: "Enable Sound"
+    }
+};
+
+let currentLang = 'es';
+
+function updateLanguage(lang) {
+    currentLang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (TRANSLATIONS[lang][key]) {
+            el.textContent = TRANSLATIONS[lang][key];
+        }
+    });
+    
+    // Update active button state
+    document.getElementById('langEsBtn').classList.toggle('active', lang === 'es');
+    document.getElementById('langEnBtn').classList.toggle('active', lang === 'en');
+}
+
 const MORSE_CODE_DICT = {
     '.-': 'A', '-...': 'B', '-.-.': 'C', '-..': 'D', '.': 'E',
     '..-.': 'F', '--.': 'G', '....': 'H', '..': 'I', '.---': 'J',
@@ -48,6 +121,10 @@ const morseButton = document.getElementById('morseButton');
 const soundToggle = document.getElementById('soundToggle');
 const undoBtn = document.getElementById('undoBtn');
 const clearBtn = document.getElementById('clearBtn');
+
+// Language DOM
+const langEsBtn = document.getElementById('langEsBtn');
+const langEnBtn = document.getElementById('langEnBtn');
 
 // Tabs DOM
 const tabBtns = document.querySelectorAll('.tab-btn');
@@ -351,3 +428,7 @@ if (clearBtn) {
 
 populateGuide();
 updateDisplay();
+
+// Language listeners
+langEsBtn.addEventListener('click', () => updateLanguage('es'));
+langEnBtn.addEventListener('click', () => updateLanguage('en'));

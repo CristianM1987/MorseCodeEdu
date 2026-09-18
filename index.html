@@ -9,44 +9,48 @@
 </head>
 <body>
     <div class="app-container">
+        <div class="lang-toggle">
+            <button id="langEsBtn" class="lang-btn active">ES</button>
+            <button id="langEnBtn" class="lang-btn">EN</button>
+        </div>
         <header>
             <div class="header-top">
-                <h1>Código Morse</h1>
+                <h1 data-i18n="title">Código Morse</h1>
             </div>
-            <p>Aprende, practica y traduce.</p>
+            <p data-i18n="subtitle">Aprende, practica y traduce.</p>
         </header>
 
         <div class="tabs">
-            <button class="tab-btn active" data-target="translator">Traductor</button>
-            <button class="tab-btn" data-target="guide">Abecedario</button>
-            <button class="tab-btn" data-target="exercises">Ejercicios</button>
+            <button class="tab-btn active" data-target="translator" data-i18n="tabTranslator">Traductor</button>
+            <button class="tab-btn" data-target="guide" data-i18n="tabGuide">Abecedario</button>
+            <button class="tab-btn" data-target="exercises" data-i18n="tabExercises">Ejercicios</button>
         </div>
 
         <main>
             <!-- Translator Section -->
             <div id="translator" class="tab-content active">
                 <div class="display-panel glass">
-                    <div class="label">Secuencia Actual</div>
+                    <div class="label" data-i18n="currentSeq">Secuencia Actual</div>
                     <div id="currentSequence" class="current-sequence"></div>
                 </div>
 
                 <div class="display-panel glass">
-                    <div class="label">Mensaje Traducido</div>
+                    <div class="label" data-i18n="translatedText">Mensaje Traducido</div>
                     <div id="translatedText" class="translated-text">_</div>
                 </div>
 
                 <div class="action-buttons">
-                    <button id="undoBtn" class="action-btn">Deshacer</button>
-                    <button id="clearBtn" class="action-btn clear-btn">Borrar Todo</button>
+                    <button id="undoBtn" class="action-btn" data-i18n="undo">Deshacer</button>
+                    <button id="clearBtn" class="action-btn clear-btn" data-i18n="clear">Borrar Todo</button>
                 </div>
 
                 <div class="stats-grid">
                     <div class="stat-card glass">
-                        <div class="stat-label">Duración Pulsación</div>
+                        <div class="stat-label" data-i18n="pressDur">Duración Pulsación</div>
                         <div id="pressDuration" class="stat-value">0 ms</div>
                     </div>
                     <div class="stat-card glass">
-                        <div class="stat-label">Tiempo Entre Pulsaciones</div>
+                        <div class="stat-label" data-i18n="pauseDur">Tiempo Entre Pulsaciones</div>
                         <div id="pauseDuration" class="stat-value">0 ms</div>
                     </div>
                 </div>
@@ -55,15 +59,15 @@
             <!-- Guide Section -->
             <div id="guide" class="tab-content">
                 <div class="guide-panel glass">
-                    <h3>Guía de Tiempos</h3>
+                    <h3 data-i18n="guideTitle">Guía de Tiempos</h3>
                     <ul class="timing-guide">
-                        <li><span class="dot"></span> Punto: Corto (&lt; 250ms)</li>
-                        <li><span class="dash"></span> Raya: Largo (&gt; 250ms)</li>
-                        <li>Pausa entre letras: &gt; 600ms</li>
-                        <li>Pausa entre palabras: &gt; 1400ms</li>
+                        <li><span class="dot"></span> <span data-i18n="guideDot">Punto: Corto (&lt; 250ms)</span></li>
+                        <li><span class="dash"></span> <span data-i18n="guideDash">Raya: Largo (&gt; 250ms)</span></li>
+                        <li data-i18n="guideLetterPause">Pausa entre letras: &gt; 600ms</li>
+                        <li data-i18n="guideWordPause">Pausa entre palabras: &gt; 1400ms</li>
                     </ul>
                     
-                    <h3>Alfabeto y Números</h3>
+                    <h3 data-i18n="guideAlphabet">Alfabeto y Números</h3>
                     <div class="alphabet-grid" id="alphabetGrid">
                         <!-- Populated by JS -->
                     </div>
@@ -74,36 +78,36 @@
             <div id="exercises" class="tab-content">
                 <div class="exercise-panel glass">
                     <div class="exercise-header">
-                        <h3>Modo Práctica</h3>
-                        <div class="score">Puntuación: <span id="scoreValue">0</span></div>
+                        <h3 data-i18n="practiceMode">Modo Práctica</h3>
+                        <div class="score"><span data-i18n="score">Puntuación:</span> <span id="scoreValue">0</span></div>
                     </div>
                     
                     <div class="target-character">
-                        <div class="label">Digita esta letra/número:</div>
+                        <div class="label" data-i18n="typeThis">Digita esta letra/número:</div>
                         <div id="targetChar" class="huge-char">A</div>
                         <div id="targetMorse" class="hint-morse">.-</div>
                     </div>
 
                     <div class="display-panel glass feedback-panel">
-                        <div class="label">Tu Intento</div>
+                        <div class="label" data-i18n="yourAttempt">Tu Intento</div>
                         <div id="exerciseSequence" class="current-sequence"></div>
-                        <div id="exerciseFeedback" class="feedback-text">Esperando...</div>
+                        <div id="exerciseFeedback" class="feedback-text" data-i18n="waiting">Esperando...</div>
                     </div>
                     
-                    <button id="nextExerciseBtn" class="secondary-btn">Siguiente Ejercicio</button>
+                    <button id="nextExerciseBtn" class="secondary-btn" data-i18n="nextEx">Siguiente Ejercicio</button>
                 </div>
             </div>
 
             <!-- Universal Input Button -->
             <div class="input-area">
                 <button id="morseButton" class="morse-button">
-                    <span class="button-text">MANTÉN PRESIONADO</span>
+                    <span class="button-text" data-i18n="holdBtn">MANTÉN PRESIONADO</span>
                     <div class="ripple"></div>
                 </button>
                 <div class="sound-toggle">
                     <label>
                         <input type="checkbox" id="soundToggle" checked>
-                        Activar Sonido
+                        <span data-i18n="soundToggle">Activar Sonido</span>
                     </label>
                 </div>
             </div>
